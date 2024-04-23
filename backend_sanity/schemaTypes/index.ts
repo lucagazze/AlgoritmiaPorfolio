@@ -1,4 +1,4 @@
-import { category } from "./category";
-import { project } from "./project";
+import About from "./About";
+import testimonials from "./testimonials";
 
-export const schemaTypes = [category, project];
+export const schemaTypes = [testimonials, About];
