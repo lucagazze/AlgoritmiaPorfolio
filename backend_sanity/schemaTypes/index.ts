@@ -1,4 +1,4 @@
-import About from "./About";
+import about from "./About.js";
 import testimonials from "./testimonials";
 
-export const schemaTypes = [testimonials, About];
+export const schemaTypes = [testimonials, about];
