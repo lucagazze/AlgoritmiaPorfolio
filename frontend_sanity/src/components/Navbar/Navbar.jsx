@@ -1,15 +1,17 @@
-import React from 'react'
+import React from "react";
 
-import "./Navbar.scss"
+import logo from "../../assets/logo.png";
+import "./Navbar.scss";
+
 
 const Navbar = () => {
   return (
-    <div>
+    <nav>
       <div>
-        <img src="images.logo" alt="logo" />
+        <img src={logo} alt="logo" />
       </div>
-    </div>
-  )
-}
+    </nav>
+  );
+};
 
-export default Navbar
+export default Navbar;
