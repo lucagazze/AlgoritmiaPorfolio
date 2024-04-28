@@ -2,24 +2,22 @@ import React,{useState, useEffect} from 'react'
 import { motion } from "framer-motion"
 
 import "./Abous.scss"
+import { urlFor, client } from '../../client';
+import { AppWrap, MotionWrap } from '../../wrapper';
 
-import about01 from "../../assets/about01.png"
-import about03 from "../../assets/about02.png"
-import about02 from "../../assets/about03.png"
-import about04 from "../../assets/about04.png"
-
-
-
-
-const abouts = [
-  { title: "Desarrollo Web", descripccion: "Somos un buen equipo", imgUrl: about01},
-  { title: "Desarrollo Frontend", descripccion: "Somos un buen equipo", imgUrl: about02},
-  { title: "Desarrollo Backend", descripccion: "Somos un buen equipo", imgUrl: about03},
-  { title: "UI/UX", descripccion: "Somos un buen equipo", imgUrl: about04}
-
-]
 
 const About = () => {
+  const [abouts, setAbouts] = useState([]);
+
+  useEffect(() => {
+    const query = '*[_type == "abouts"]';
+
+    client.fetch(query).then((data) => {
+      setAbouts(data);
+    });
+  }, []);
+
+
   return (
     <>
       <h2 className="head-text">Sabemos que <span>Buenos Diseños</span> <br />significa  <span>Buenos Negocios</span></h2>
@@ -36,7 +34,7 @@ const About = () => {
           >
 
 
-          <img src={about.imgUrl} alt={about.title} />
+          <img src={urlFor(about.imgUrl)} alt={about.title} />
             <h2 className="bold-text" style={{ marginTop: 20 }}>{about.title}</h2>
             <p className="p-text" style={{ marginTop: 10 }}>{about.description}</p>
 
@@ -50,4 +48,8 @@ const About = () => {
   )
 }
 
-export default About
+export default AppWrap(
+  MotionWrap(About, 'app__about'),
+  'about',
+  'app__whitebg',
+);

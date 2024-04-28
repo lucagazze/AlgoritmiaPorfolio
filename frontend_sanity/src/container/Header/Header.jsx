@@ -1,6 +1,8 @@
 import React from 'react'
 import { motion } from "framer-motion"
 
+import { AppWrap } from '../../wrapper';
+
 import circle from "../../assets/circle.svg"
 import flutter from "../../assets/flutter.png"
 import redux from "../../assets/redux.png"
@@ -81,4 +83,4 @@ const Header = () => {
   )
 }
 
-export default Header
+export default AppWrap(Header, 'home');
