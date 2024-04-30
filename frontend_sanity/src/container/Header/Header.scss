@@ -173,11 +173,14 @@
     justify-content: flex-end;
     align-items: flex-end;
     position: relative;
+    border-color: black;
+    border: 100px;
   
     img {
       width: 100%;
       object-fit: contain;
       z-index: 1;
+      
     }
   
     .overlay_circle {

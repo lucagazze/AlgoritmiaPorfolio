@@ -7,7 +7,7 @@ import circle from "../../assets/circle.svg"
 import flutter from "../../assets/flutter.png"
 import redux from "../../assets/redux.png"
 import sass from "../../assets/sass.png"
-import profile from "../../assets/profile.png"
+import profile from "../../assets/Default_haceme_un_buen_logo_que_diga_Algorithmia_que_sea_muy_l_0_ae53fc87-bf71-4388-ada7-7310639b708a_0.png"
 
 import "./Header.scss"
 
@@ -41,7 +41,7 @@ const Header = () => {
           <span>👋</span>
           <div style={{ marginLeft: 20 }}>
             <p className="p-text">Hola, somos</p>
-            <h1 className="head-text">DesarrollosDiv</h1>
+            <h1 className="head-text">Algorithmia</h1>
           </div>
         </div>
 

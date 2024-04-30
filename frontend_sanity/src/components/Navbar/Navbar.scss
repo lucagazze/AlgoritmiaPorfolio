@@ -173,3 +173,27 @@
     }
   }
   
+  .navbarlogo{
+    display:  flex;
+    justify-content: left;
+    align-items: left;
+  }
+  .navbarlogo h1 {
+    font-size: 34px; /* Tamaño del texto */
+    font-weight: 700; /* Grosor de la fuente */
+    color: var(--secondary-color); /* Color del texto */
+    margin: 0; /* Eliminar márgenes para mayor precisión */
+    display: flex;
+    align-items: center;
+  }
+  
+  .navbarlogo h1 a {
+    text-decoration: none; /* Eliminar subrayado del enlace */
+    color: inherit; /* Heredar el color del texto del elemento padre */
+    display: flex;
+    align-items: center;
+  }
+  
+  .navbarlogo h1 a:hover {
+    color: var(--gray-color); /* Cambiar color al pasar el cursor sobre el enlace */
+  }
