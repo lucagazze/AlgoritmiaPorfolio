@@ -2,7 +2,6 @@ import React, { useState } from 'react'; // Importa React y la función useState
 import { HiMenuAlt4, HiX } from 'react-icons/hi'; // Importa los iconos del menú y de cierre
 import { motion } from 'framer-motion'; // Importa la función motion para animaciones
 
-import logo from "../../assets/Default_haceme_un_buen_logo_que_diga_Algorithmia_que_sea_muy_l_0_ae53fc87-bf71-4388-ada7-7310639b708a_0.png"; // Importa el logo desde la carpeta de assets
 import "./Navbar.scss"; // Importa los estilos CSS para el Navbar
 
 // Definición del componente Navbar

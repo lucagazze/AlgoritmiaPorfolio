@@ -31,17 +31,28 @@ const Skills = () => {
           {skills.map((skill) => (
             <motion.div
               whileInView={{ opacity: [0, 1] }}
-              transition={{ duration: 0.5 }}
+              transition={{ duration: 0 }}
               className="app__skills-item app__flex"
               key={skill.name}
+              whileHover={{ scale: 1.4 }}
             >
-              <div
+              <motion.div
                 className="app__flex"
                 style={{ backgroundColor: skill.bgColor }}
               >
-                <img src={urlFor(skill.icon)} alt={skill.name} />
-              </div>
-              <p className="p-text">{skill.name}</p>
+                <motion.img
+                              whileInView={{ scale: 0.8 }}
+
+                  src={urlFor(skill.icon)}
+                  alt={skill.name}
+                  style={{ width: '100%', height: '100%' }}
+                />
+              </motion.div>
+              <motion.p
+                className="p-text"
+              >
+                {skill.name}
+              </motion.p>
             </motion.div>
           ))}
         </motion.div>
@@ -56,20 +67,17 @@ const Skills = () => {
               </div>
               <motion.div className="app__skills-exp-works">
                 {experience.works.map((work) => (
-                  <>
-                    <motion.div
-                      whileInView={{ opacity: [0, 1] }}
-                      transition={{ duration: 0.5 }}
-                      className="app__skills-exp-work"
-                      data-tip
-                      data-for={work.name}
-                      key={work.name}
-                    >
-                      <h4 className="bold-text">{work.name}</h4>
-                      <p className="p-text">{work.company}</p>
-                    </motion.div>
-                   
-                  </>
+                  <motion.div
+                    whileInView={{ opacity: [0, 1] }}
+                    transition={{ duration: 0.5 }}
+                    className="app__skills-exp-work"
+                    data-tip
+                    data-for={work.name}
+                    key={work.name}
+                  >
+                    <h4 className="bold-text">{work.name}</h4>
+                    <p className="p-text">{work.company}</p>
+                  </motion.div>
                 ))}
               </motion.div>
             </motion.div>
