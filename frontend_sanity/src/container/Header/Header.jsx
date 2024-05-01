@@ -25,8 +25,8 @@ const Header = () => {
   const handleMouseMove = (event) => {
     const mouseX = event.clientX;
     const mouseY = event.clientY;
-    const moveX = (mouseX - window.innerWidth / 2) / 40; // Dividir para suavizar el movimiento
-    const moveY = -(mouseY - window.innerHeight / 2) / 40; // Dividir para suavizar el movimiento
+    const moveX = (mouseX - window.innerWidth / 2) / 120; // Dividir para suavizar el movimiento
+    const moveY = -(mouseY - window.innerHeight / 2) / 120; // Dividir para suavizar el movimiento
     setMousePosition({ x: moveX, y: moveY });
   };
 

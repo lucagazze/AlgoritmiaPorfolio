@@ -1,39 +1,48 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 
 import { AppWrap, MotionWrap } from '../../wrapper';
-import { urlFor, client } from '../../client';
 import './Skills.scss';
 
+// Datos de habilidades
+const skillsData = [
+  { name: "React", icon: require("../../assets/react.png"), bgColor: "#ffffff" },
+  { name: "Redux", icon: require("../../assets/redux.png"), bgColor: "#ffffff" },
+  { name: "Python", icon: require("../../assets/python.png"), bgColor: "#ffffff" },
+  { name: "Api", icon: require("../../assets/api.png"), bgColor: "#ffffff" },
+
+];
+
+// Datos de experiencias aleatorios
+// Datos de experiencias
+const experiencesData = [
+  { year: 2021, works: [
+    { name: "Desarrollo de aplicaciones móviles", company: "Mobile Solutions Inc.", description: "Creación de aplicaciones móviles multiplataforma" },
+    { name: "Testing de software", company: "QA Testing Co.", description: "Pruebas exhaustivas de software para garantizar la calidad del producto" }
+  ]},
+  { year: 2018, works: [
+    { name: "Desarrollo de software en Java", company: "Java Development Corp.", description: "Implementación de soluciones utilizando Java y tecnologías relacionadas" }
+  ]},
+  // Puedes agregar más experiencias si lo deseas
+];
+
 const Skills = () => {
-  const [experiences, setExperiences] = useState([]);
-  const [skills, setSkills] = useState([]);
-
-  useEffect(() => {
-    const query = '*[_type == "experiences"]';
-    const skillsQuery = '*[_type == "skills"]';
-
-    client.fetch(query).then((data) => {
-      setExperiences(data);
-    });
-
-    client.fetch(skillsQuery).then((data) => {
-      setSkills(data);
-    });
-  }, []);
+  const [skills] = useState(skillsData);
+  const [experiences] = useState(experiencesData);
 
   return (
     <>
       <h2 className="head-text">Habilidades y experiencias</h2>
 
       <div className="app__skills-container">
+        {/* Lista de habilidades */}
         <motion.div className="app__skills-list">
           {skills.map((skill) => (
             <motion.div
               whileInView={{ opacity: [0, 1] }}
               transition={{ duration: 0 }}
               className="app__skills-item app__flex"
-              key={skill.name}
+              key={skill.name} // Usar una propiedad única como clave
               whileHover={{ scale: 1.4 }}
             >
               <motion.div
@@ -41,21 +50,17 @@ const Skills = () => {
                 style={{ backgroundColor: skill.bgColor }}
               >
                 <motion.img
-                              whileInView={{ scale: 0.8 }}
-
-                  src={urlFor(skill.icon)}
+                  src={skill.icon} // Usar .default para acceder a la URL de la imagen requerida
                   alt={skill.name}
                   style={{ width: '100%', height: '100%' }}
                 />
               </motion.div>
-              <motion.p
-                className="p-text"
-              >
-                {skill.name}
-              </motion.p>
+              <motion.p className="p-text">{skill.name}</motion.p>
             </motion.div>
           ))}
         </motion.div>
+
+        {/* Lista de experiencias */}
         <div className="app__skills-exp">
           {experiences.map((experience) => (
             <motion.div

@@ -1,32 +1,35 @@
 import React, { useState, useEffect } from 'react';
-import { AiFillEye} from 'react-icons/ai';
+import { AiFillEye } from 'react-icons/ai';
 import { motion } from 'framer-motion';
 
 import { AppWrap, MotionWrap } from '../../wrapper';
-import { urlFor, client } from '../../client';
 import './Work.scss';
 
+const worksData = [
+  { title: "Portal Selecta", description: "Portal Selecta", projectLink: "https://selectaargentina.com/", imgUrl: require("../../assets/about01.png") , tags: ["All", "Portal"] },
+  { title: "Portal Fagaz", description: "Portal Fagaz", projectLink: "https://fagazsa.com/", imgUrl: require("../../assets/about02.png") , tags: ["All", "Portal"] },
+  { title: "Pagina de Rutinas Gym", description: "Pagina de Rutinas Gym", projectLink: "https://fitplansearch.com/", imgUrl: require("../../assets/about03.png") , tags: ["All", "Portal", "Blogs"] }
+
+
+
+];
+
 const Work = () => {
-  const [works, setWorks] = useState([]);
-  const [filterWork, setFilterWork] = useState([]);
+  const [works, setWorks] = useState(worksData);
+  const [filterWork, setFilterWork] = useState(worksData);
   const [activeFilter, setActiveFilter] = useState('All');
   const [animateCard, setAnimateCard] = useState({ y: 0, opacity: 1 });
 
   useEffect(() => {
-    const query = '*[_type == "works"]';
-
-    client.fetch(query).then((data) => {
-      setWorks(data);
-      setFilterWork(data);
-    });
+    handleWorkFilter(activeFilter);
   }, []);
 
   const handleWorkFilter = (item) => {
     setActiveFilter(item);
-    setAnimateCard([{ y: 100, opacity: 0 }]);
+    setAnimateCard({ y: 100, opacity: 0 });
 
     setTimeout(() => {
-      setAnimateCard([{ y: 0, opacity: 1 }]);
+      setAnimateCard({ y: 0, opacity: 1 });
 
       if (item === 'All') {
         setFilterWork(works);
@@ -38,7 +41,7 @@ const Work = () => {
 
   return (
     <>
-      <h2 className="head-text">Nuestro  <span>Portfolio</span> Creativo</h2>
+      <h2 className="head-text">Nuestro <span>Portfolio</span> Creativo</h2>
 
       <div className="app__work-filter">
         {['Blogs', 'Portal', 'Ecommerce', 'React JS', 'All'].map((item, index) => (
@@ -59,10 +62,8 @@ const Work = () => {
       >
         {filterWork.map((work, index) => (
           <div className="app__work-item app__flex" key={index}>
-            <div
-              className="app__work-img app__flex"
-            >
-              <img src={urlFor(work.imgUrl)} alt={work.name} />
+            <div className="app__work-img app__flex">
+              <img src={work.imgUrl} alt={work.imgUrl} />
 
               <motion.div
                 whileHover={{ opacity: [0, 1] }}
@@ -70,7 +71,6 @@ const Work = () => {
                 className="app__work-hover app__flex"
               >
                 <a href={work.projectLink} target="_blank" rel="noreferrer">
-
                   <motion.div
                     whileInView={{ scale: [0, 1] }}
                     whileHover={{ scale: [1, 0.90] }}
@@ -80,7 +80,6 @@ const Work = () => {
                     <AiFillEye />
                   </motion.div>
                 </a>
-          
               </motion.div>
             </div>
 
