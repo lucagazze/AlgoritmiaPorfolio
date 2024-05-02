@@ -1,34 +1,37 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { motion } from 'framer-motion';
-import MotionWrap from '../../components/wrapper//MotionWrap';
-import AppWrap from '../../components/wrapper//AppWrap';
+import AppWrap from '../../components/wrapper/AppWrap';
+import MotionWrap from '../../components/wrapper/MotionWrap';
 import './Skills.scss';
+import reactIcon from '../../assets/img/react.png';
+import reduxIcon from '../../assets/img/redux.png';
+import pythonIcon from '../../assets/img/python.png';
+import apiIcon from '../../assets/img/api.png';
 
 // Datos de habilidades
 const skillsData = [
   {
     name: 'React',
-    icon: require('../../assets/img/react.png'),
+    icon: reactIcon,
     bgColor: '#ffffff',
   },
   {
     name: 'Redux',
-    icon: require('../../assets/img/redux.png'),
+    icon: reduxIcon,
     bgColor: '#ffffff',
   },
   {
     name: 'Python',
-    icon: require('../../assets/img/python.png'),
+    icon: pythonIcon,
     bgColor: '#ffffff',
   },
   {
     name: 'Api',
-    icon: require('../../assets/img/api.png'),
+    icon: apiIcon,
     bgColor: '#ffffff',
   },
 ];
 
-// Datos de experiencias aleatorios
 // Datos de experiencias
 const experiencesData = [
   {
@@ -62,9 +65,6 @@ const experiencesData = [
 ];
 
 export const Skills = () => {
-  const [skills] = useState(skillsData);
-  const [experiences] = useState(experiencesData);
-
   return (
     <>
       <h2 className="head-text">Habilidades y experiencias</h2>
@@ -72,20 +72,20 @@ export const Skills = () => {
       <div className="app__skills-container">
         {/* Lista de habilidades */}
         <motion.div className="app__skills-list">
-          {skills.map((skill) => (
+          {skillsData.map((skill, index) => (
             <motion.div
-              whileInView={{ opacity: [0, 1] }}
-              transition={{ duration: 0 }}
-              className="app__skills-item app__flex"
-              key={skill.name} // Usar una propiedad única como clave
-              whileHover={{ scale: 1.4 }}
-            >
+            whileInView={{ opacity: [0, 1] }}
+            transition={{ duration: 0 }}
+            className="app__skills-item app__flex"
+            key={skill.name} // Usar una propiedad única como clave
+            whileHover={{ scale: 1.4 }}
+          >
               <motion.div
                 className="app__flex"
                 style={{ backgroundColor: skill.bgColor }}
               >
                 <motion.img
-                  src={skill.icon} // Usar .default para acceder a la URL de la imagen requerida
+                  src={skill.icon}
                   alt={skill.name}
                   style={{ width: '100%', height: '100%' }}
                 />
@@ -97,20 +97,21 @@ export const Skills = () => {
 
         {/* Lista de experiencias */}
         <div className="app__skills-exp">
-          {experiences.map((experience) => (
-            <motion.div className="app__skills-exp-item" key={experience.year}>
+          {experiencesData.map((experience, index) => (
+            <motion.div key={index} className="app__skills-exp-item">
               <div className="app__skills-exp-year">
                 <p className="bold-text">{experience.year}</p>
               </div>
               <motion.div className="app__skills-exp-works">
-                {experience.works.map((work) => (
+                {experience.works.map((work, idx) => (
                   <motion.div
-                    whileInView={{ opacity: [0, 1] }}
-                    transition={{ duration: 0.5 }}
+                    key={idx}
+                    whileHover={{ opacity: 1 }}
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
                     className="app__skills-exp-work"
                     data-tip
                     data-for={work.name}
-                    key={work.name}
                   >
                     <h4 className="bold-text">{work.name}</h4>
                     <p className="p-text">{work.company}</p>
@@ -125,8 +126,4 @@ export const Skills = () => {
   );
 };
 
-export default AppWrap(
-  MotionWrap(Skills, 'app__skills'),
-  'skills',
-  'app__whitebg'
-);
+export default AppWrap(MotionWrap(Skills, 'app__skills'), 'skills', 'app__whitebg');

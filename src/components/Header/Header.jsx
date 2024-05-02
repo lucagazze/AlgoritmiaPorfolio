@@ -19,18 +19,18 @@ const scaleVariants = {
   },
 };
 
-export const Header = () => {
+const Header = () => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
 
-  const handleMouseMove = (event) => {
-    const mouseX = event.clientX;
-    const mouseY = event.clientY;
-    const moveX = (mouseX - window.innerWidth / 2) / 120; // Dividir para suavizar el movimiento
-    const moveY = -(mouseY - window.innerHeight / 2) / 120; // Dividir para suavizar el movimiento
-    setMousePosition({ x: moveX, y: moveY });
-  };
-
   useEffect(() => {
+    const handleMouseMove = (event) => {
+      const mouseX = event.clientX;
+      const mouseY = event.clientY;
+      const moveX = (mouseX - window.innerWidth / 2) / 120;
+      const moveY = -(mouseY - window.innerHeight / 2) / 120;
+      setMousePosition({ x: moveX, y: moveY });
+    };
+
     window.addEventListener('mousemove', handleMouseMove);
 
     return () => {
@@ -44,9 +44,7 @@ export const Header = () => {
         whileInView={{ x: [-100, 0], opacity: [0, 1] }}
         transition={{ duration: 0.5 }}
         className="app__header-info"
-        style={{
-          transform: `translate(${mousePosition.x}px, ${mousePosition.y}px)`,
-        }}
+        style={{ transform: `translate(${mousePosition.x}px, ${mousePosition.y}px)` }}
       >
         <div className="app__header-badge">
           <div className="badge-cmp app__flex">
@@ -66,9 +64,7 @@ export const Header = () => {
         <motion.img
           src={profile}
           alt="profile_bg"
-          style={{
-            transform: `translate(${mousePosition.x}px, ${mousePosition.y}px) rotateY(${mousePosition.x}deg) rotateX(${mousePosition.y}deg)`,
-          }}
+          style={{ transform: `translate(${mousePosition.x}px, ${mousePosition.y}px) rotateY(${mousePosition.x}deg) rotateX(${mousePosition.y}deg)` }}
         />
         <img src={circle} alt="profile_circle" className="overlay_circle" />
       </div>
@@ -77,13 +73,11 @@ export const Header = () => {
         variants={scaleVariants}
         whileInView={scaleVariants.whileInView}
         className="app__header-circles"
-        style={{
-          transform: `translate(${mousePosition.x}px, ${mousePosition.y}px)`,
-        }}
+        style={{ transform: `translate(${mousePosition.x}px, ${mousePosition.y}px)` }}
       >
         {[flutter, redux, sass].map((circle, index) => (
           <div className="circle-cmp app__flex" key={`circle-${index}`}>
-            <img src={circle} alt="profile_bg" />
+            <img src={circle} alt={`circle-${index}`} />
           </div>
         ))}
       </motion.div>
