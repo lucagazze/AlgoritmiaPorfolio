@@ -199,13 +199,22 @@
   }
 }
 
-img {
-  view-timeline-name: --image;
-  view-timeline-axis: block;
+  @keyframes hide {
+    from {
+      opacity: 1;
+      scale: 100%;
+    }
 
-  animation-timeline: --image;
-  animation-name: show;
+    to {
+      opacity: 0;
+      scale: 25%;
+    }
+  }
 
-  animation-range: entry 25% cover 50%;
-  animation-fill-mode: both;
-}
+  .fade-enter-active {
+    animation: show 0.5s ease-in-out;
+  }
+
+  .fade-leave-active {
+    animation: hide 0.5s ease-in-out;
+  }

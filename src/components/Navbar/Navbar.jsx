@@ -17,7 +17,7 @@ export const Navbar = () => {
       {/* Lista de enlaces de la barra de navegación */}
       <ul className="app__navbar-links">
         {/* Mapea los elementos de la lista de enlaces */}
-        {['home', 'about', 'work', 'skills', 'contact'].map((item) => (
+        {['inicio', 'sobre', 'proyectos', 'habilidades', 'contacto'].map((item) => (
           <li className="app__flex p-text" key={`link-${item}`}>
             <div />
             <a href={`#${item}`}>{item}</a> {/* Renderiza los enlaces */}

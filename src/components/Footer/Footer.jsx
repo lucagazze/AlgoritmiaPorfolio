@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
-
 import mobile from '../../assets/img/mobile.png';
 import emaill from '../../assets/img/emaill.png';
-import AppWrap from '../../components/wrapper/MotionWrap';
+import AppWrap from '../../components/wrapper/AppWrap';
 import MotionWrap from '../../components/wrapper/MotionWrap';
 import './Footer.scss';
 
-export const Footer = () => {
+const Footer = () => {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -34,7 +33,7 @@ export const Footer = () => {
       <h2 className="head-text">Contactanos!</h2>
 
       <div className="app__footer-cards">
-        <div className="app__footer-card ">
+        <div className="app__footer-card">
           <img src={emaill} alt="email" />
           <a href="mailto:hello@micael.com" className="p-text">
             lucagazze1@gmail.com
@@ -93,6 +92,8 @@ export const Footer = () => {
 
 export default AppWrap(
   MotionWrap(Footer, 'app__footer'),
-  'contact',
+  'contacto',
   'app__primarybg'
 );
+
+export { Footer };

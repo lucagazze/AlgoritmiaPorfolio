@@ -1,23 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import AppWrap from '../../components/wrapper//AppWrap';
+import AppWrap from '../../components/wrapper/AppWrap';
 import circle from '../../assets/img/circle.svg';
 import flutter from '../../assets/img/flutter.png';
 import redux from '../../assets/img/redux.png';
 import sass from '../../assets/img/sass.png';
 import profile from '../../assets/img/Default_haceme_un_buen_logo_que_diga_Algorithmia_que_sea_muy_l_0_ae53fc87-bf71-4388-ada7-7310639b708a_0.png';
 import './Header.scss';
-
-const scaleVariants = {
-  whileInView: {
-    scale: [0, 1],
-    opacity: [0, 1],
-    transition: {
-      duration: 1,
-      ease: 'easeInOut',
-    },
-  },
-};
 
 const Header = () => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
@@ -70,8 +59,8 @@ const Header = () => {
       </div>
 
       <motion.div
-        variants={scaleVariants}
-        whileInView={scaleVariants.whileInView}
+        whileInView={{ scale: [0, 1], opacity: [0, 1] }}
+        transition={{ duration: 1, ease: 'easeInOut' }}
         className="app__header-circles"
         style={{ transform: `translate(${mousePosition.x}px, ${mousePosition.y}px)` }}
       >
@@ -85,4 +74,4 @@ const Header = () => {
   );
 };
 
-export default AppWrap(Header, 'home');
+export default AppWrap(Header, 'inicio');

@@ -1,37 +1,35 @@
 import React, { useState, useEffect } from 'react';
 import { AiFillEye } from 'react-icons/ai';
 import { motion } from 'framer-motion';
+import AppWrap from '../../components/wrapper/AppWrap';
 import MotionWrap from '../../components/wrapper/MotionWrap';
-import AppWrap from '../../components/wrapper//AppWrap';
 import './Work.scss';
 
-export const worksData = [
+const worksData = [
   {
     title: 'Portal Selecta',
     description: 'Portal Selecta',
     projectLink: 'https://selectaargentina.com/',
-    imgUrl: require('../../assets/img/about01.png'),
+    imgUrl: require('../../assets/img/Selecta.png'),
     tags: ['All', 'Portal'],
   },
   {
     title: 'Portal Fagaz',
     description: 'Portal Fagaz',
     projectLink: 'https://fagazsa.com/',
-    imgUrl: require('../../assets/img/about02.png'),
+    imgUrl: require('../../assets/img/FagazSa.png'),
     tags: ['All', 'Portal'],
   },
   {
     title: 'Pagina de Rutinas Gym',
     description: 'Pagina de Rutinas Gym',
     projectLink: 'https://fitplansearch.com/',
-    imgUrl: require('../../assets/img/about03.png'),
+    imgUrl: require('../../assets/img/FitPlan.png'),
     tags: ['All', 'Portal', 'Blogs'],
   },
 ];
 
 const Work = () => {
-  const [works] = useState(worksData);
-  const [filterWork, setFilterWork] = useState(worksData);
   const [activeFilter, setActiveFilter] = useState('All');
   const [animateCard, setAnimateCard] = useState({ y: 0, opacity: 1 });
 
@@ -42,11 +40,6 @@ const Work = () => {
     setTimeout(() => {
       setAnimateCard({ y: 0, opacity: 1 });
 
-      if (item === 'All') {
-        setFilterWork(works);
-      } else {
-        setFilterWork(works.filter((work) => work.tags.includes(item)));
-      }
     }, 500);
   };
 
@@ -81,23 +74,17 @@ const Work = () => {
         transition={{ duration: 0.5, delayChildren: 0.5 }}
         className="app__work-portfolio"
       >
-        {filterWork.map((work, index) => (
+        {worksData.map((work, index) => (
           <div className="app__work-item app__flex" key={index}>
             <div className="app__work-img app__flex">
-              <img src={work.imgUrl} alt={work.imgUrl} />
+              <img src={work.imgUrl} alt={work.title} />
 
               <motion.div
-  whileHover={{ opacity: [0, 1] }}
-  initial={{ opacity: 0 }} 
-  transition={{
-    duration: 0.25,
-    ease: 'easeInOut',
-  }}
-  className="app__work-hover app__flex"
->
-
-
-
+                whileHover={{ opacity: [0, 1] }}
+                initial={{ opacity: 0 }}
+                transition={{ duration: 0.25, ease: 'easeInOut' }}
+                className="app__work-hover app__flex"
+              >
                 <a href={work.projectLink} target="_blank" rel="noreferrer">
                   <motion.div
                     whileInView={{ scale: [0, 1] }}
@@ -130,6 +117,6 @@ const Work = () => {
 
 export default AppWrap(
   MotionWrap(Work, 'app__works'),
-  'work',
+  'proyectos',
   'app__primarybg'
 );
