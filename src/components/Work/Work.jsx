@@ -50,7 +50,7 @@ const Work = () => {
   return (
     <>
       <h2 className="head-text">
-        Nuestro <span>Portfolio</span> Creativo
+        Nuestro <span>Portfolio</span> 
       </h2>
 
       <div className="app__work-filter">

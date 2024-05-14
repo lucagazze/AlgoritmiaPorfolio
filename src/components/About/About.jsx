@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback, useMemo } from 'react';
 import { motion } from 'framer-motion';
 import AppWrap from '../../components/wrapper/AppWrap';
 import MotionWrap from '../../components/wrapper/MotionWrap';
@@ -8,39 +8,39 @@ import about02 from '../../assets/img/Default_Imagen_Una_panormica_de_una_sala_d
 import about03 from '../../assets/img/Default_Imagen_Una_sala_luminosa_con_diseadores_y_desarrollado_2.jpg';
 import about04 from '../../assets/img/Default_Dame_una_imagen_tecnologica_de_desarrollo_de_paginas_w_0.jpg';
 
-const aboutData = [
-  {
-    title: 'UX/UI',
-    description: 'Descripción UX/UI',
-    imgUrl: about01,
-  },
-  {
-    title: 'Desarrollo Backend',
-    description: 'Desarrollo Backend',
-    imgUrl: about02,
-  },
-  {
-    title: 'Desarrollo Frontend',
-    description: 'Desarrollo Frontend',
-    imgUrl: about03,
-  },
-  {
-    title: 'Desarrollo Web',
-    description: 'Desarrollo Web',
-    imgUrl: about04,
-  },
-];
-
 const About = () => {
   const [hoverIndex, setHoverIndex] = useState(null);
 
-  const handleMouseEnter = (index) => {
+  const handleMouseEnter = useCallback((index) => {
     setHoverIndex(index);
-  };
+  }, []);
 
-  const handleMouseLeave = () => {
+  const handleMouseLeave = useCallback(() => {
     setHoverIndex(null);
-  };
+  }, []);
+
+  const aboutData = useMemo(() => [
+    {
+      title: 'UX/UI',
+      description: 'Descripción UX/UI',
+      imgUrl: about01,
+    },
+    {
+      title: 'Desarrollo Backend',
+      description: 'Desarrollo Backend',
+      imgUrl: about02,
+    },
+    {
+      title: 'Desarrollo Frontend',
+      description: 'Desarrollo Frontend',
+      imgUrl: about03,
+    },
+    {
+      title: 'Desarrollo Web',
+      description: 'Desarrollo Web',
+      imgUrl: about04,
+    },
+  ], []);
 
   return (
     <>
@@ -55,9 +55,10 @@ const About = () => {
             initial={{ scale: 0.5 }}
             animate={{ scale: 1 }}
             whileHover={{ scale: 1.3 }}
-            className={`app__profile-item ${hoverIndex === index ? 'hovered' : ''}`}
+            className="app__profile-item"
             onMouseEnter={() => handleMouseEnter(index)}
             onMouseLeave={handleMouseLeave}
+            style={{ transform: hoverIndex === index ? 'scale(1.3)' : 'scale(1)' }}
           >
             <img src={item.imgUrl} alt={item.title} />
             <h2 className="bold-text" style={{ marginTop: 20 }}>

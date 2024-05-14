@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import mobile from '../../assets/img/mobile.png';
 import emaill from '../../assets/img/emaill.png';
 import AppWrap from '../../components/wrapper/AppWrap';
@@ -14,19 +14,17 @@ const Footer = () => {
   const [isFormSubmitted, setIsFormSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
 
-  const { username, email, message } = formData;
-
-  const handleChangeInput = (e) => {
+  const handleChangeInput = useCallback((e) => {
     const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
-  };
+    setFormData((prevFormData) => ({ ...prevFormData, [name]: value }));
+  }, []);
 
-  const handleSubmit = () => {
+  const handleSubmit = useCallback(() => {
     setLoading(true);
     console.log(formData);
     setIsFormSubmitted(true);
     setLoading(false);
-  };
+  }, [formData]);
 
   return (
     <>
@@ -39,13 +37,14 @@ const Footer = () => {
             lucagazze1@gmail.com
           </a>
         </div>
-        <div className="app__footer-card">
+        <div className="app__footer-card ">
           <img src={mobile} alt="phone" />
           <a href="tel:+1 (123) 456-7890" className="p-text">
             +(54) 341-618-9746
           </a>
         </div>
       </div>
+
       {!isFormSubmitted ? (
         <div className="app__footer-form app__flex">
           <div className="app__flex">
@@ -53,8 +52,8 @@ const Footer = () => {
               className="p-text"
               type="text"
               placeholder="Tu nombre"
-              name="username"
-              value={username}
+              name="name"
+              value={formData.name}
               onChange={handleChangeInput}
             />
           </div>
@@ -64,7 +63,7 @@ const Footer = () => {
               type="email"
               placeholder="Tu mail"
               name="email"
-              value={email}
+              value={formData.email}
               onChange={handleChangeInput}
             />
           </div>
@@ -72,8 +71,8 @@ const Footer = () => {
             <textarea
               className="p-text"
               placeholder="Tu mensaje"
-              value={message}
               name="message"
+              value={formData.message}
               onChange={handleChangeInput}
             />
           </div>
